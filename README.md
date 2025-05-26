@@ -13,11 +13,8 @@
 
 The default timeout is 60 seconds. In my experience, 5 seconds works better — it's faster and less likely to hit Discord's rate limits. Feel free to change it, but tweak carefully depending on what you're doing.
 
-In `index.ts`, make sure to load your Discord Clan Tag Server IDs:
 
-```ts
-var guilds: Array<any> = [];
-```
+
 > [!TIP]
 > https://nelly.tools/tags is a great place to find servers with clan tags.
 
