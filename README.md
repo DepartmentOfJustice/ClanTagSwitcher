@@ -3,6 +3,7 @@
 **Animate your Discord Clan Tags with style**
 
 **ClanTagSwitcher** is a Vencord plugin that allows you to rotate through your Clan Tag list.
+![image](https://github.com/user-attachments/assets/833a5343-fa80-45f5-ae84-6eb5282aa3d4)
 
 ---
 
