@@ -12,15 +12,15 @@
 
 ## Configuration
 
-The default timeout is 60 seconds. In my experience, 5 seconds works better — it's faster and less likely to hit Discord's rate limits. Feel free to change it, but tweak carefully depending on what you're doing.
-
-
+The default timeout is 60 seconds ( I highly suggest it). In my experience, 5 seconds works better — it's faster but in the long run will hit Discord's rate limits ( I ran 5s cooldown for about 2 hours before being disabled for suspicious activities). Feel free to change it, but tweak carefully depending on what you're doing.
 
 > [!TIP]
 > https://nelly.tools/tags is a great place to find servers with clan tags.
 
 ## Installation
-Learn how to install this custom plugin @ https://docs.vencord.dev/installing/
+Here is a great tutorial by Gunther on how to install custom vencord plugins!
+[![IMAGE ALT TEXT HERE](https://files.catbox.moe/po51t2.png)](https://www.youtube.com/watch?v=XmVNRKrphlw)
+
 
 > [!note]
 > I will not provide support for installing this plugin.
