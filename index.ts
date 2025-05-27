@@ -24,7 +24,7 @@ const settings = definePluginSettings({
         description: "The cooldown (in seconds) between clan tag switches. Anything below 5 seconds might be too fast and could trigger rate limits.",
         markers: makeRange(5, 100, 10),
         stickToMarkers: false,
-        default: 5
+        default: 0.01
     }
 });
 
