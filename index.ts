@@ -35,27 +35,33 @@ export default definePlugin({
     settings,
 
     getDiscordToken(): string | null {
+    try {
         let token: string | null = null;
 
-        (window as any).webpackChunkdiscord_app.push([
+        const __webpack_require__ = (window as any).webpackChunkdiscord_app.push([
             [Math.random()],
             {},
-            (require: any) => {
-                for (const m of Object.values(require.c)) {
-                    try {
-                        const exp = (m as any).exports?.default;
-                        if (exp?.getToken) {
-                            token = exp.getToken();
-                            break;
-                        }
-                    } catch { }
-                }
-            }
+            (req: any) => req
         ]);
 
-        return token;
-    },
+        const modules = Object.values(__webpack_require__.c);
 
+        for (const m of modules) {
+            const exp = (m as any)?.exports?.default;
+            if (exp && typeof exp.getToken === "function") {
+                const possibleToken = exp.getToken();
+                if (typeof possibleToken === "string" && possibleToken.length > 30) {
+                    token = possibleToken;
+                    break;
+                }
+            }
+        }
+
+        return token;
+    } catch (err) {
+        return null;
+    }
+},
     async SwitchClanTag() {
         const authToken = this.getDiscordToken();
 
