@@ -5,7 +5,6 @@
  */
 
 import { definePluginSettings } from "@api/Settings";
-import { makeRange } from "@components/PluginSettings/components";
 import definePlugin, { OptionType, PluginNative } from "@utils/types";
 
 const Native = VencordNative.pluginHelpers.ClanTagSwitcher as PluginNative<typeof import("./native")>;
@@ -22,9 +21,9 @@ const settings = definePluginSettings({
     cooldown: {
         type: OptionType.SLIDER,
         description: "The cooldown (in seconds) between clan tag switches. Anything below 5 seconds might be too fast and could trigger rate limits.",
-        markers: makeRange(5, 100, 10),
         stickToMarkers: false,
-        default: 5
+        default: 5,
+        markers: [5, 10, 20, 30, 40, 50, 60, 70]
     }
 });
 
@@ -35,33 +34,34 @@ export default definePlugin({
     settings,
 
     getDiscordToken(): string | null {
-    try {
-        let token: string | null = null;
+        try {
+            let token: string | null = null;
 
-        const __webpack_require__ = (window as any).webpackChunkdiscord_app.push([
-            [Math.random()],
-            {},
-            (req: any) => req
-        ]);
+            const __webpack_require__ = (window as any).webpackChunkdiscord_app.push([
+                [Math.random()],
+                {},
+                (req: any) => req
+            ]);
 
-        const modules = Object.values(__webpack_require__.c);
+            const modules = Object.values(__webpack_require__.c);
 
-        for (const m of modules) {
-            const exp = (m as any)?.exports?.default;
-            if (exp && typeof exp.getToken === "function") {
-                const possibleToken = exp.getToken();
-                if (typeof possibleToken === "string" && possibleToken.length > 30) {
-                    token = possibleToken;
-                    break;
+            for (const m of modules) {
+                const exp = (m as any)?.exports?.default;
+                if (exp && typeof exp.getToken === "function") {
+                    const possibleToken = exp.getToken();
+                    if (typeof possibleToken === "string" && possibleToken.length > 30) {
+                        token = possibleToken;
+                        break;
+                    }
                 }
             }
-        }
 
-        return token;
-    } catch (err) {
-        return null;
-    }
-},
+            return token;
+        } catch (err) {
+            return null;
+        }
+    },
+
     async SwitchClanTag() {
         const authToken = this.getDiscordToken();
 
